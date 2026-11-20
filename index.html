@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="nn">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Hei verden</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,700&family=Inter:wght@400;500&display=swap" rel="stylesheet">
+<style>
+/* VOICE: varm, enkel, venleg helsing
+   IDEA: eit postkort frå jorda
+   PICTURE: ein jordklode som snurrar sakte over ein horisont
+   COLOUR and TYPE: djup havblå, grøn land, solgul aksent; Fraunces + Inter
+   LAYOUT: eitt sentrert kort, kloden over teksten */
+:root{color-scheme:light dark;
+  --bg:light-dark(#f4f1ea,#0d1b2a);
+  --ink:light-dark(#13233a,#eef2f7);
+  --card:light-dark(#ffffff,#13263b);
+  --sea:#1f5fa8;--land:#3fa66b;--sun:#f5b82e}
+:root[data-theme=light]{color-scheme:light}
+:root[data-theme=dark]{color-scheme:dark}
+*{box-sizing:border-box;min-width:0}
+body{margin:0;min-height:100vh;display:grid;place-items:center;
+  background:var(--bg);color:var(--ink);
+  font:17px/1.55 Inter,system-ui,sans-serif;padding:24px}
+.kort{background:var(--card);border-radius:24px;padding:clamp(28px,6vw,56px);
+  max-width:560px;width:100%;text-align:center;
+  box-shadow:0 20px 50px -20px rgb(0 0 0 / .25)}
+.klode{width:min(220px,60vw);aspect-ratio:1;margin:0 auto 28px;border-radius:50%;
+  background:radial-gradient(circle at 30% 30%,#5b9be0,var(--sea) 60%,#0f3766);
+  position:relative;overflow:hidden;
+  box-shadow:0 0 0 10px color-mix(in srgb,var(--sun) 25%,transparent)}
+.land{position:absolute;inset:0;width:200%;display:flex;animation:snurr 16s linear infinite}
+.land svg{width:50%;height:100%}
+@keyframes snurr{to{transform:translateX(-50%)}}
+h1{font-family:Fraunces,Georgia,serif;font-size:clamp(40px,9vw,64px);
+  line-height:1.05;margin:0 0 12px}
+p{margin:0 auto 24px;max-width:36ch;opacity:.8}
+button{font:inherit;font-weight:500;min-height:44px;padding:0 22px;border:0;border-radius:999px;
+  background:var(--sun);color:#13233a;cursor:pointer}
+button:focus-visible{outline:3px solid var(--sea);outline-offset:3px}
+@media (prefers-reduced-motion:reduce){.land{animation:none}}
+</style>
+</head>
+<body>
+<main class="kort">
+  <div class="klode" aria-hidden="true">
+    <div class="land">
+      <svg viewBox="0 0 100 100"><g fill="#3fa66b">
+        <path d="M10 30c8-8 22-6 26 2s-4 14-2 22-10 12-16 6-14-20-8-30z"/>
+        <path d="M55 20c10-4 22 2 24 10s-8 8-6 16 10 10 4 18-18 4-20-6 4-14-6-20 0-14 4-18z"/>
+        <path d="M30 72c6-2 14 0 14 6s-8 10-14 8-6-12 0-14z"/></g></svg>
+      <svg viewBox="0 0 100 100"><g fill="#3fa66b">
+        <path d="M10 30c8-8 22-6 26 2s-4 14-2 22-10 12-16 6-14-20-8-30z"/>
+        <path d="M55 20c10-4 22 2 24 10s-8 8-6 16 10 10 4 18-18 4-20-6 4-14-6-20 0-14 4-18z"/>
+        <path d="M30 72c6-2 14 0 14 6s-8 10-14 8-6-12 0-14z"/></g></svg>
+    </div>
+  </div>
+  <h1 id="helsing">Hei verden!</h1>
+  <p>Ei lita nettside laga med berre HTML og CSS – og ein knapp med litt JavaScript.</p>
+  <button id="knapp" type="button">Sei hei på eit anna språk</button>
+</main>
+<script>
+{
+  const helsingar=["Hei verden!","Hello world!","¡Hola mundo!","Bonjour le monde !","Hallo Welt!","Ciao mondo!","こんにちは世界!"];
+  let i=0;
+  const h=document.getElementById("helsing");
+  document.getElementById("knapp").addEventListener("click",()=>{
+    i=(i+1)%helsingar.length;
+    h.textContent=helsingar[i];
+  });
+}
+</script>
+</body>
+</html>
